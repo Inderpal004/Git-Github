@@ -47,7 +47,7 @@ git branch -M main  (to rename branch)
 git push origin main
 git push -u origin main   (-u means to set upstream)
 
-# Branchs Commands
+# Branches Commands
 
 git branch  (to check branch)
 git branch -M main   (to rename branch)
@@ -73,3 +73,7 @@ It lets you tell others about changes you've pushed to a branch in a repository 
 git pull origin main
 
 used to fetch and download content from a remote repo and immediately update the local repo to match that content.
+
+# Resolving Merge Conflicts
+
+An event that takes place when Git is unable to automatically resolve differences in code between two commits.
