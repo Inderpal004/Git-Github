@@ -281,4 +281,3 @@ git remote remove <remote-name>
 ---
 
 This guide covers essential and advanced Git commands for managing your code efficiently. For more advanced usage, refer to the official Git documentation.
-```
