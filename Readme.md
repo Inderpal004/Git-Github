@@ -47,7 +47,7 @@ git branch -M main  (to rename branch)
 git push origin main
 git push -u origin main   (-u means to set upstream)
 
-# Branche Commands
+# Branchs Commands
 
 git branch  (to check branch)
 git branch -M main   (to rename branch)
@@ -55,3 +55,21 @@ git checkout <--branch name-->  (to navigate)
 git checkout -b <--new branch name-->  (to create new branch)
 git branch -d <--branch name-->  (to delete branch)
 
+# Merging Code
+
+Way 1
+git diff <--branch name-->  (to compare commits,branches,files & more)
+git merge <--branch name-->  (to merge 2 branches)
+
+Way 2
+Create a Pull Request
+
+# Pull Request
+
+It lets you tell others about changes you've pushed to a branch in a repository on Github.
+
+# Pull Command
+
+git pull origin main
+
+used to fetch and download content from a remote repo and immediately update the local repo to match that content.
