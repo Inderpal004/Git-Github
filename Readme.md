@@ -1,79 +1,284 @@
-# Configuring Git
+# Git Configuration and Commands
 
-- Global Level
-git config -- global user.name "My Name"
-git config -- global user.email "myemail@example.com"
+This document provides a guide on configuring Git, cloning repositories, tracking file status, and other essential Git commands.
 
-- Local Level
+---
+
+## Configuring Git
+
+### Global Level
+Configure Git with your username and email globally (for all repositories).
+```bash
+git config --global user.name "My Name"
+git config --global user.email "myemail@example.com"
+```
+
+### Local Level
+Set Git configuration specific to a single repository.
+```bash
 git config user.name "My Name"
 git config user.email "myemail@example.com"
+```
 
+### Check Configuration
+Display the current Git configuration.
+```bash
 git config --list
+```
 
-# Clone & Status
+---
 
-Clone - Cloning a repository on our local machine
-git clone <--some link-->
+## Cloning & Status
 
-status - displays the state of the code
+### Clone
+Clone a remote repository to your local machine.
+```bash
+git clone <repository-link>
+```
+
+### Status
+Check the current state of your working directory and staging area.
+```bash
 git status
+```
+- **untracked** — New files that Git isn't tracking yet.
+- **modified** — Files that have been changed but not yet staged.
+- **staged** — Files that are ready to be committed.
+- **unmodified** — Files that have not been changed.
 
-- untracked -- new files that git doesn't yet track
-- modified -- changed
-- staged -- file is ready to be committed
-- unmodified -- unchanged
+---
 
-# Add & Commit 
+## Add, Commit, and Stash
 
-- add -- adds new or changed files in your working directory to the Git staging area.
-git add <--file name-->
+### Add
+Add files to the Git staging area to prepare them for a commit.
+```bash
+git add <file-name>
+```
 
-- commit -- it is the record of change
-git commit -m 'some message'
+### Commit
+Record changes to the repository with a message describing the changes.
+```bash
+git commit -m 'Commit message'
+```
 
-# Push Command
+### Stash
+Temporarily save changes without committing them.
+```bash
+git stash
+```
+- **View stashes**:
+  ```bash
+  git stash list
+  ```
+- **Apply latest stash**:
+  ```bash
+  git stash apply
+  ```
+- **Apply a specific stash**:
+  ```bash
+  git stash apply stash@{<index>}
+  ```
+- **Delete stash after applying**:
+  ```bash
+  git stash pop
+  ```
 
-- push -- upload local repo content to remote repo
+---
+
+## Push Command
+
+### Push
+Upload local repository content to the remote repository.
+```bash
 git push origin main
+```
 
-# Init Command
+---
 
-init - used to create a new git repo
+## Init Command
+
+### Initialize a New Git Repository
+Create a new Git repository locally and link it to a remote.
+```bash
 git init
-git remote add origin <--link-->
-git remote -v    (to verify remote)
-git branch    (to check branch)
-git branch -M main  (to rename branch)
+git remote add origin <repository-link>
+git remote -v    # Verify the remote link
+git branch       # Check current branch
+git branch -M main  # Rename the branch to 'main'
 git push origin main
-git push -u origin main   (-u means to set upstream)
+git push -u origin main   # Set upstream branch
+```
 
-# Branches Commands
+---
 
-git branch  (to check branch)
-git branch -M main   (to rename branch)
-git checkout <--branch name-->  (to navigate)
-git checkout -b <--new branch name-->  (to create new branch)
-git branch -d <--branch name-->  (to delete branch)
+## Branches Commands
 
-# Merging Code
+### Managing Branches
+- **Check branch**: 
+  ```bash
+  git branch
+  ```
+- **Rename branch to 'main'**: 
+  ```bash
+  git branch -M main
+  ```
+- **Switch to another branch**: 
+  ```bash
+  git checkout <branch-name>
+  ```
+- **Create and switch to a new branch**: 
+  ```bash
+  git checkout -b <new-branch-name>
+  ```
+- **Delete a branch**: 
+  ```bash
+  git branch -d <branch-name>
+  ```
 
-Way 1
-git diff <--branch name-->  (to compare commits,branches,files & more)
-git merge <--branch name-->  (to merge 2 branches)
+---
 
-Way 2
-Create a Pull Request
+## Merging Code
 
-# Pull Request
+### Way 1: Using Git Merge
+- **Compare changes between branches**:
+  ```bash
+  git diff <branch-name>
+  ```
+- **Merge branches**:
+  ```bash
+  git merge <branch-name>
+  ```
 
-It lets you tell others about changes you've pushed to a branch in a repository on Github.
+### Way 2: Create a Pull Request (on GitHub)
 
-# Pull Command
+Pull requests allow you to discuss and review changes pushed to a branch in a remote repository before merging them.
 
+---
+
+## Fetch Command
+
+### Fetch Changes Without Merging
+Use fetch to get the latest changes from the remote repository, but without automatically merging them into your local branch.
+```bash
+git fetch origin
+```
+
+---
+
+## Pull Command
+
+### Fetch and Update Local Repository
+```bash
 git pull origin main
+```
+This command fetches and downloads content from the remote repository and immediately updates the local repository to match.
 
-used to fetch and download content from a remote repo and immediately update the local repo to match that content.
+---
 
-# Resolving Merge Conflicts
+## Resolving Merge Conflicts
 
-An event that takes place when Git is unable to automatically resolve differences in code between two commits.
+Merge conflicts occur when Git is unable to automatically resolve differences between two commits. You will need to manually resolve conflicts in the affected files and commit the changes.
+
+---
+
+## Undoing Changes
+
+### Undo Staged Changes
+- **Unstage specific files**:
+  ```bash
+  git reset <file-name>
+  ```
+- **Unstage all files**:
+  ```bash
+  git reset
+  ```
+
+### Undo Committed Changes
+- **Undo the last commit**:
+  ```bash
+  git reset HEAD~1
+  ```
+- **Undo several commits by resetting to a specific commit hash**:
+  ```bash
+  git reset <commit-hash>
+  git reset --hard <commit-hash>  # This will discard all changes
+  ```
+
+---
+
+## Deleting Files
+
+### Remove a file from the working directory and staging area
+```bash
+git rm <file-name>
+```
+
+### Remove a file only from Git but keep it locally
+```bash
+git rm --cached <file-name>
+```
+
+---
+
+## Viewing Logs and History
+
+### Log of commits
+View the commit history of your project.
+```bash
+git log
+```
+
+### Log with specific details (one line per commit)
+```bash
+git log --oneline
+```
+
+### View the history of changes to a file
+```bash
+git log <file-name>
+```
+
+---
+
+## Tagging
+
+### Create a Tag
+Tags are used to mark specific points in Git history.
+```bash
+git tag <tag-name>
+```
+
+### List all Tags
+```bash
+git tag
+```
+
+### Push Tags to Remote
+```bash
+git push origin <tag-name>
+```
+
+---
+
+## Working with Remote Repositories
+
+### Add a New Remote
+```bash
+git remote add <remote-name> <remote-url>
+```
+
+### View Remote Repositories
+```bash
+git remote -v
+```
+
+### Remove a Remote
+```bash
+git remote remove <remote-name>
+```
+
+---
+
+This guide covers essential and advanced Git commands for managing your code efficiently. For more advanced usage, refer to the official Git documentation.
+```
